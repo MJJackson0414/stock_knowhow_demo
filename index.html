@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>股票交割款入門</title>
+<meta name="description" content="從買一檔台股開始，看券商、交割銀行和核心系統怎麼分工，以及一扣、二扣、大借大貸是什麼。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #faf9f6;
+  --surface: #ffffff;
+  --surface-2: #f1efe8;
+  --text: #2c2c2a;
+  --text-2: #5f5e5a;
+  --line: #d3d1c7;
+  --line-strong: #b4b2a9;
+  --accent: #534ab7;
+  --accent-soft: #eeedfe;
+  --note-bg: #faeeda;
+  --note-text: #633806;
+  --arrow: #73726c;
+  --purple-fill: #eeedfe;
+  --purple-stroke: #534ab7;
+  --purple-title: #3c3489;
+  --purple-sub: #534ab7;
+  --teal-fill: #e1f5ee;
+  --teal-stroke: #0f6e56;
+  --teal-title: #085041;
+  --teal-sub: #0f6e56;
+  --teal-line: #1d9e75;
+  --coral-line: #d85a30;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1c1c1a;
+    --surface: #262624;
+    --surface-2: #30302d;
+    --text: #ecebe6;
+    --text-2: #b4b2a9;
+    --line: #444441;
+    --line-strong: #5f5e5a;
+    --accent: #afa9ec;
+    --accent-soft: #2e2a5c;
+    --note-bg: #412402;
+    --note-text: #fac775;
+    --arrow: #9c9a92;
+    --purple-fill: #3c3489;
+    --purple-stroke: #afa9ec;
+    --purple-title: #eeedfe;
+    --purple-sub: #cecbf6;
+    --teal-fill: #085041;
+    --teal-stroke: #5dcaa5;
+    --teal-title: #e1f5ee;
+    --teal-sub: #9fe1cb;
+  }
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
+}
+main { max-width: 860px; margin: 0 auto; padding: 0 16px 64px; }
+header.hero { max-width: 860px; margin: 0 auto; padding: 48px 16px 8px; }
+header.hero h1 { font-size: 30px; line-height: 1.35; margin: 0 0 8px; font-weight: 700; }
+header.hero p { margin: 0; color: var(--text-2); }
+.notice {
+  margin: 20px 0 0;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: var(--note-bg);
+  color: var(--note-text);
+  font-size: 14px;
+}
+nav.toc {
+  position: sticky; top: 0; z-index: 5;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  margin: 24px 0 0;
+}
+nav.toc ul {
+  max-width: 860px; margin: 0 auto; padding: 10px 16px;
+  list-style: none; display: flex; gap: 6px 18px; flex-wrap: wrap;
+  font-size: 14px;
+}
+nav.toc a { color: var(--text-2); text-decoration: none; }
+nav.toc a:hover { color: var(--accent); }
+section { padding-top: 40px; scroll-margin-top: 56px; }
+h2 { font-size: 22px; font-weight: 700; margin: 0 0 12px; }
+h2 .num { color: var(--accent); margin-right: 8px; }
+h3 { font-size: 17px; font-weight: 500; margin: 28px 0 8px; }
+p { margin: 0 0 12px; }
+ul, ol { padding-left: 1.4em; margin: 0 0 12px; }
+li { margin-bottom: 6px; }
+strong { font-weight: 700; }
+.lead {
+  font-size: 18px;
+  padding: 16px 20px;
+  border-left: 4px solid var(--accent);
+  background: var(--accent-soft);
+  border-radius: 0;
+  margin: 0 0 16px;
+}
+.table-wrap { overflow-x: auto; margin: 0 0 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 15px; }
+th, td { text-align: left; vertical-align: top; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+th { background: var(--surface-2); font-weight: 500; white-space: nowrap; }
+tr:last-child td { border-bottom: none; }
+td.when { white-space: nowrap; font-weight: 500; }
+figure.diagram {
+  margin: 8px 0 20px;
+  padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow-x: auto;
+}
+figure.diagram svg { display: block; width: 100%; min-width: 600px; height: auto; }
+figure.diagram figcaption { font-size: 13px; color: var(--text-2); margin-top: 8px; }
+.tag {
+  display: inline-block; font-size: 12px; line-height: 1.6;
+  padding: 0 8px; border-radius: 999px; margin-left: 4px;
+  background: var(--note-bg); color: var(--note-text); vertical-align: 1px;
+}
+.callout { padding: 12px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); margin: 0 0 16px; }
+footer { max-width: 860px; margin: 0 auto; padding: 24px 16px 48px; color: var(--text-2); font-size: 13px; border-top: 1px solid var(--line); }
+svg .th { font-size: 14px; font-weight: 500; fill: var(--text); }
+svg .ts { font-size: 12px; fill: var(--text-2); }
+svg .box { fill: var(--surface); stroke: var(--line-strong); stroke-width: .75; }
+svg .dash { stroke-dasharray: 4 3; }
+svg .purple rect { fill: var(--purple-fill); stroke: var(--purple-stroke); stroke-width: .75; }
+svg .purple .th { fill: var(--purple-title); }
+svg .purple .ts { fill: var(--purple-sub); }
+svg .teal rect { fill: var(--teal-fill); stroke: var(--teal-stroke); stroke-width: .75; }
+svg .teal .th { fill: var(--teal-title); }
+svg .teal .ts { fill: var(--teal-sub); }
+svg rect.sw-purple { fill: var(--purple-fill); stroke: var(--purple-stroke); stroke-width: .75; }
+svg rect.sw-teal { fill: var(--teal-fill); stroke: var(--teal-stroke); stroke-width: .75; }
+svg .arr { stroke: var(--arrow); stroke-width: 1.5; fill: none; }
+svg .money { stroke: var(--teal-line); stroke-width: 2; fill: none; }
+svg .sell { stroke: var(--coral-line); stroke-width: 1.5; fill: none; stroke-dasharray: 4 3; }
+svg .leader { stroke: var(--line-strong); stroke-width: .75; stroke-dasharray: 4 4; fill: none; }
+svg marker .mk-gray { stroke: var(--arrow); }
+svg marker .mk-teal { stroke: var(--teal-line); }
+svg marker .mk-coral { stroke: var(--coral-line); }
+@media (max-width: 600px) {
+  header.hero { padding-top: 32px; }
+  header.hero h1 { font-size: 24px; }
+  .lead { font-size: 16px; }
+  table { font-size: 14px; }
+  th, td { padding: 8px 10px; }
+  th { white-space: normal; }
+  td.when { white-space: normal; width: 5.5em; }
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <marker id="ah-gray" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="mk-gray" d="M2 1L8 5L2 9" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <marker id="ah-teal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="mk-teal" d="M2 1L8 5L2 9" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <marker id="ah-coral" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="mk-coral" d="M2 1L8 5L2 9" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+  </defs>
+</svg>
+
+<header class="hero">
+  <h1>股票交割款入門</h1>
+  <p>從買一檔台股開始，看券商、交割銀行和核心系統怎麼分工，以及一扣、二扣、大借大貸是什麼。</p>
+  <div class="notice">本頁是業務流程層級的簡化說明，系統名稱都改成通用說法。標有「推論」的地方是依流程推出來的，不是原始文件直接寫的。</div>
+</header>
+
+<nav class="toc" aria-label="目錄">
+  <ul>
+    <li><a href="#overview">一句話</a></li>
+    <li><a href="#roles">角色</a></li>
+    <li><a href="#buy-flow">買台股的流程</a></li>
+    <li><a href="#money">錢怎麼流</a></li>
+    <li><a href="#debit">一扣與二扣</a></li>
+    <li><a href="#other">其他業務</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<section id="overview">
+  <h2><span class="num">1</span>先用一句話講</h2>
+  <p class="lead">證券清算系統是<strong>交割銀行端</strong>的系統。它不負責買賣股票，而是<strong>照券商給的明細，從客戶的銀行帳戶扣錢（買進）或把錢存進去（賣出），最後再和券商把總帳結清。</strong></p>
+  <p>可以這樣想：券商開帳單，銀行負責幫你付款；證券清算系統就是銀行裡專門處理「券商帳單」的部門。</p>
+  <div class="callout">名字容易誤會：證交所也有它自己的「清算」，那是證交所和券商之間的對帳，不是這套系統。這套系統只處理<strong>交割款</strong>，也就是買賣股票要付或要收的錢。</div>
+</section>
+
+<section id="roles">
+  <h2><span class="num">2</span>有哪些角色</h2>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>角色</th><th>做什麼</th></tr></thead>
+    <tbody>
+      <tr><td>你（投資人）</td><td>下單；在交割銀行有一個交割帳戶，開戶時簽了扣款授權</td></tr>
+      <tr><td>券商</td><td>接你的單送到證交所；算出每位客戶要扣或要入多少錢，做成檔案送給銀行</td></tr>
+      <tr><td>證交所／櫃買中心</td><td>撮合買方和賣方；和券商結算</td></tr>
+      <tr><td>外部傳檔平台</td><td>券商把檔案送進銀行的管道，不同券商可能用不同平台</td></tr>
+      <tr><td><strong>證券清算系統</strong></td><td>收檔、檢查資料、交給核心系統扣款入款、收結果、回覆券商</td></tr>
+      <tr><td>銀行核心系統</td><td>真正改動帳戶金額的地方，包括台幣核心、台幣整批作業系統、外幣核心</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="buy-flow">
+  <h2><span class="num">3</span>用「你買一檔台股」走一遍</h2>
+  <p><strong>開戶時（事前）：</strong>你在券商開證券戶，同時在交割銀行開交割帳戶並簽<strong>授權</strong>。銀行之後能依照券商的資料扣你的帳戶，靠的就是這份授權。</p>
+  <div class="callout"><strong>日期的叫法：</strong>本頁一律把 <strong>T+1 叫「預傳日」</strong>（券商傳檔、銀行預傳），<strong>T+2 叫「交割日」</strong>（錢真正扣入的那天）。銀行系統的選單用的是另一套叫法：T+1 叫「交割日」、T+2 叫「清算日」。看系統畫面時要記得對應，不要混用。</div>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>時點</th><th>外面發生什麼</th><th>證券清算系統做什麼</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="when">T 日<br><span style="font-weight:400;color:var(--text-2)">成交日</span></td>
+        <td>你下單，券商送到證交所撮合成交。<strong>錢還在你帳戶裡，還沒被扣</strong></td>
+        <td>一般交割在這天還不用處理。有些券商 T 日晚上會先請銀行查一次餘額</td>
+      </tr>
+      <tr>
+        <td class="when">T+1<br><span style="font-weight:400;color:var(--text-2)">預傳日</span></td>
+        <td>券商把「哪位客戶、哪個帳號、扣多少或入多少」做成交割明細檔，經平台送到銀行</td>
+        <td>
+          <ol>
+            <li>收檔並檢查（帳號、檢查碼、授權等）</li>
+            <li>作業中心經辦建檔、主管上傳，先「預傳」給整批作業系統</li>
+            <li>白天分幾輪查客戶餘額，做成<strong>缺款名單</strong>給券商，讓券商提醒客戶補錢</li>
+            <li>下午把缺款資料送去處理<strong>券商墊款</strong>（客戶錢不夠時，券商用銀行給的額度先墊付）</li>
+          </ol>
+        </td>
+      </tr>
+      <tr>
+        <td class="when">T+2<br><span style="font-weight:400;color:var(--text-2)">交割日</span></td>
+        <td>正式交割</td>
+        <td>
+          <ol>
+            <li>0:00 起核心系統做第一次扣款，叫<strong>一扣</strong></li>
+            <li>錢不夠的帳號由核心再扣一次，叫<strong>追帳／二扣</strong>，規則是湊足金額才一起扣</li>
+            <li>扣款結果檔回來後，寫回每筆明細的狀態</li>
+            <li>把結果回覆給券商（一扣回饋、二扣回饋）</li>
+            <li><strong>大借大貸</strong>：把從客戶那邊扣到的總額，和券商的交割專戶一次結清</li>
+          </ol>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <figure class="diagram">
+    <svg viewBox="0 0 680 556" role="img" aria-labelledby="d1-title d1-desc">
+      <title id="d1-title">買台股 T、T+1、T+2 交割流程</title>
+      <desc id="d1-desc">三條泳道：券商、證券清算系統、銀行核心系統。T 日成交但錢還沒動；T+1 券商送交割明細，系統檢核後預傳核心，並查餘額產生缺款名單給券商；T+2 核心扣款與追帳，系統寫回結果並回覆券商，錢先進銀行內部過渡帳，再由大借大貸撥入券商交割專戶。</desc>
+
+      <rect class="box" x="116" y="40" width="148" height="36" rx="4"/>
+      <text class="th" x="190" y="58" text-anchor="middle" dominant-baseline="central">券商</text>
+      <rect class="box" x="296" y="40" width="148" height="36" rx="4"/>
+      <text class="th" x="370" y="58" text-anchor="middle" dominant-baseline="central">證券清算系統</text>
+      <rect class="box" x="476" y="40" width="148" height="36" rx="4"/>
+      <text class="th" x="550" y="58" text-anchor="middle" dominant-baseline="central">銀行核心系統</text>
+
+      <text class="th" x="68" y="115" text-anchor="middle" dominant-baseline="central">T 日</text>
+      <text class="ts" x="68" y="133" text-anchor="middle" dominant-baseline="central">成交日</text>
+      <text class="th" x="68" y="243" text-anchor="middle" dominant-baseline="central">T+1</text>
+      <text class="ts" x="68" y="261" text-anchor="middle" dominant-baseline="central">預傳日</text>
+      <text class="th" x="68" y="415" text-anchor="middle" dominant-baseline="central">T+2</text>
+      <text class="ts" x="68" y="433" text-anchor="middle" dominant-baseline="central">交割日</text>
+
+      <line class="leader" x1="40" y1="168" x2="636" y2="168"/>
+      <line class="leader" x1="40" y1="336" x2="636" y2="336"/>
+
+      <g>
+        <rect class="box" x="116" y="96" width="148" height="56" rx="8"/>
+        <text class="th" x="190" y="114" text-anchor="middle" dominant-baseline="central">接單、撮合成交</text>
+        <text class="ts" x="190" y="132" text-anchor="middle" dominant-baseline="central">錢還在你帳戶</text>
+      </g>
+      <g>
+        <rect class="box dash" x="296" y="96" width="148" height="56" rx="8"/>
+        <text class="th" x="370" y="114" text-anchor="middle" dominant-baseline="central">還沒有動作</text>
+        <text class="ts" x="370" y="132" text-anchor="middle" dominant-baseline="central">部分券商先查餘額</text>
+      </g>
+
+      <g>
+        <rect class="box" x="116" y="184" width="148" height="56" rx="8"/>
+        <text class="th" x="190" y="202" text-anchor="middle" dominant-baseline="central">送交割明細檔</text>
+        <text class="ts" x="190" y="220" text-anchor="middle" dominant-baseline="central">經外部傳檔平台</text>
+      </g>
+      <line class="arr" x1="266" y1="212" x2="293" y2="212" marker-end="url(#ah-gray)"/>
+      <g class="purple">
+        <rect x="296" y="184" width="148" height="56" rx="8"/>
+        <text class="th" x="370" y="202" text-anchor="middle" dominant-baseline="central">收檔、檢核</text>
+        <text class="ts" x="370" y="220" text-anchor="middle" dominant-baseline="central">經辦建檔、主管上傳</text>
+      </g>
+      <line class="arr" x1="446" y1="212" x2="473" y2="212" marker-end="url(#ah-gray)"/>
+      <g>
+        <rect class="box" x="476" y="184" width="148" height="56" rx="8"/>
+        <text class="th" x="550" y="202" text-anchor="middle" dominant-baseline="central">收預傳檔</text>
+        <text class="ts" x="550" y="220" text-anchor="middle" dominant-baseline="central">排定 T+2 扣款</text>
+      </g>
+
+      <g class="purple">
+        <rect x="296" y="264" width="148" height="56" rx="8"/>
+        <text class="th" x="370" y="282" text-anchor="middle" dominant-baseline="central">查客戶餘額</text>
+        <text class="ts" x="370" y="300" text-anchor="middle" dominant-baseline="central">T+1 白天分幾輪</text>
+      </g>
+      <line class="arr" x1="294" y1="292" x2="267" y2="292" marker-end="url(#ah-gray)"/>
+      <g>
+        <rect class="box" x="116" y="264" width="148" height="56" rx="8"/>
+        <text class="th" x="190" y="282" text-anchor="middle" dominant-baseline="central">收缺款名單</text>
+        <text class="ts" x="190" y="300" text-anchor="middle" dominant-baseline="central">通知客戶補錢</text>
+      </g>
+
+      <line class="arr" x1="550" y1="242" x2="550" y2="349" marker-end="url(#ah-gray)"/>
+
+      <g class="teal">
+        <rect x="476" y="352" width="148" height="56" rx="8"/>
+        <text class="th" x="550" y="370" text-anchor="middle" dominant-baseline="central">一扣／追帳</text>
+        <text class="ts" x="550" y="388" text-anchor="middle" dominant-baseline="central">從你的帳戶扣款</text>
+      </g>
+      <line class="arr" x1="474" y1="380" x2="447" y2="380" marker-end="url(#ah-gray)"/>
+      <g class="purple">
+        <rect x="296" y="352" width="148" height="56" rx="8"/>
+        <text class="th" x="370" y="370" text-anchor="middle" dominant-baseline="central">寫回扣款結果</text>
+        <text class="ts" x="370" y="388" text-anchor="middle" dominant-baseline="central">讀回饋檔</text>
+      </g>
+      <line class="arr" x1="294" y1="380" x2="267" y2="380" marker-end="url(#ah-gray)"/>
+      <g>
+        <rect class="box" x="116" y="352" width="148" height="56" rx="8"/>
+        <text class="th" x="190" y="370" text-anchor="middle" dominant-baseline="central">收一扣／二扣回饋</text>
+        <text class="ts" x="190" y="388" text-anchor="middle" dominant-baseline="central">知道誰扣成功</text>
+      </g>
+
+      <line class="money" x1="550" y1="410" x2="550" y2="437" marker-end="url(#ah-teal)"/>
+
+      <g class="teal">
+        <rect x="476" y="440" width="148" height="56" rx="8"/>
+        <text class="th" x="550" y="458" text-anchor="middle" dominant-baseline="central">錢進內部過渡帳</text>
+        <text class="ts" x="550" y="476" text-anchor="middle" dominant-baseline="central">銀行內部帳</text>
+      </g>
+      <line class="money" x1="474" y1="468" x2="447" y2="468" marker-end="url(#ah-teal)"/>
+      <g class="teal">
+        <rect x="296" y="440" width="148" height="56" rx="8"/>
+        <text class="th" x="370" y="458" text-anchor="middle" dominant-baseline="central">大借大貸</text>
+        <text class="ts" x="370" y="476" text-anchor="middle" dominant-baseline="central">本系統批次發動</text>
+      </g>
+      <line class="money" x1="294" y1="468" x2="267" y2="468" marker-end="url(#ah-teal)"/>
+      <g class="teal">
+        <rect x="116" y="440" width="148" height="56" rx="8"/>
+        <text class="th" x="190" y="458" text-anchor="middle" dominant-baseline="central">券商交割專戶入帳</text>
+        <text class="ts" x="190" y="476" text-anchor="middle" dominant-baseline="central">一筆總額</text>
+      </g>
+
+      <rect class="sw-purple" x="104" y="521" width="14" height="14" rx="3"/>
+      <text class="ts" x="124" y="528" dominant-baseline="central">本系統的動作</text>
+      <rect class="sw-teal" x="236" y="521" width="14" height="14" rx="3"/>
+      <text class="ts" x="256" y="528" dominant-baseline="central">錢實際移動</text>
+      <line class="arr" x1="350" y1="528" x2="378" y2="528" marker-end="url(#ah-gray)"/>
+      <text class="ts" x="386" y="528" dominant-baseline="central">檔案、資料</text>
+      <line class="money" x1="476" y1="528" x2="504" y2="528" marker-end="url(#ah-teal)"/>
+      <text class="ts" x="512" y="528" dominant-baseline="central">錢的流向</text>
+    </svg>
+    <figcaption>圖 1：T 日和 T+1 只有檔案、資料在走，錢還在你的帳戶裡。到了 T+2，核心系統才真的扣你的帳戶，最下面那一排是錢的路線。</figcaption>
+  </figure>
+</section>
+
+<section id="money">
+  <h2><span class="num">4</span>錢實際怎麼流</h2>
+  <p>把錢的路線單獨拉出來，並且接到證交所那一端。買進時錢由上往下流，賣出時方向完全相反。</p>
+
+  <figure class="diagram">
+    <svg viewBox="0 0 680 550" role="img" aria-labelledby="d2-title d2-desc">
+      <title id="d2-title">買進與賣出時交割款的流向</title>
+      <desc id="d2-desc">五個帳戶由上到下：你的交割帳戶、銀行內部過渡帳、券商交割專戶、交割銀行、央行裡的證交所帳戶。買進時錢由上往下流，賣出時由下往上流。各段分別經過整批扣入款、大借大貸、券商入金或整批撥款、央行同資系統。</desc>
+
+      <rect class="box" x="240" y="40" width="200" height="56" rx="8"/>
+      <text class="th" x="340" y="58" text-anchor="middle" dominant-baseline="central">你的交割帳戶</text>
+      <text class="ts" x="340" y="76" text-anchor="middle" dominant-baseline="central">開在交割銀行</text>
+
+      <rect class="box" x="240" y="140" width="200" height="56" rx="8"/>
+      <text class="th" x="340" y="158" text-anchor="middle" dominant-baseline="central">銀行內部過渡帳</text>
+      <text class="ts" x="340" y="176" text-anchor="middle" dominant-baseline="central">推論，見下方說明</text>
+
+      <rect class="box" x="240" y="240" width="200" height="56" rx="8"/>
+      <text class="th" x="340" y="258" text-anchor="middle" dominant-baseline="central">券商交割專戶</text>
+      <text class="ts" x="340" y="276" text-anchor="middle" dominant-baseline="central">開在交割銀行</text>
+
+      <rect class="box" x="240" y="340" width="200" height="56" rx="8"/>
+      <text class="th" x="340" y="358" text-anchor="middle" dominant-baseline="central">交割銀行</text>
+      <text class="ts" x="340" y="376" text-anchor="middle" dominant-baseline="central">收付證交所款項</text>
+
+      <rect class="box" x="240" y="440" width="200" height="56" rx="8"/>
+      <text class="th" x="340" y="458" text-anchor="middle" dominant-baseline="central">央行裡的證交所帳戶</text>
+      <text class="ts" x="340" y="476" text-anchor="middle" dominant-baseline="central">證交所、櫃買中心</text>
+
+      <text class="ts" x="226" y="118" text-anchor="end" dominant-baseline="central">整批扣入款</text>
+      <text class="ts" x="226" y="218" text-anchor="end" dominant-baseline="central">大借大貸</text>
+      <text class="ts" x="226" y="318" text-anchor="end" dominant-baseline="central">券商入金／整批撥款</text>
+      <text class="ts" x="226" y="418" text-anchor="end" dominant-baseline="central">央行同資系統</text>
+
+      <line class="money" x1="310" y1="98" x2="310" y2="137" marker-end="url(#ah-teal)"/>
+      <line class="money" x1="310" y1="198" x2="310" y2="237" marker-end="url(#ah-teal)"/>
+      <line class="money" x1="310" y1="298" x2="310" y2="337" marker-end="url(#ah-teal)"/>
+      <line class="money" x1="310" y1="398" x2="310" y2="437" marker-end="url(#ah-teal)"/>
+
+      <line class="sell" x1="370" y1="138" x2="370" y2="99" marker-end="url(#ah-coral)"/>
+      <line class="sell" x1="370" y1="238" x2="370" y2="199" marker-end="url(#ah-coral)"/>
+      <line class="sell" x1="370" y1="338" x2="370" y2="299" marker-end="url(#ah-coral)"/>
+      <line class="sell" x1="370" y1="438" x2="370" y2="399" marker-end="url(#ah-coral)"/>
+
+      <line class="money" x1="200" y1="524" x2="228" y2="524" marker-end="url(#ah-teal)"/>
+      <text class="ts" x="236" y="524" dominant-baseline="central">買進：錢往下流</text>
+      <line class="sell" x1="380" y1="524" x2="408" y2="524" marker-end="url(#ah-coral)"/>
+      <text class="ts" x="416" y="524" dominant-baseline="central">賣出：錢往上流</text>
+    </svg>
+    <figcaption>圖 2：買進與賣出時，交割款經過的帳戶。左邊文字是每一段用什麼方式轉帳。</figcaption>
+  </figure>
+
+  <h3>證券清算系統管到哪幾段</h3>
+  <ul>
+    <li><strong>前兩段</strong>：交給核心系統整批扣入款，再用批次做大借大貸。這兩段完全由本系統發動。</li>
+    <li><strong>後兩段</strong>：本系統只負責產生或讀取央行同資系統的檔案，實際轉帳由其他系統或經辦完成。</li>
+    <li>買進時，券商把錢轉進交割銀行的業務專戶，是券商自己做的，本系統不參與。</li>
+  </ul>
+
+  <h3>圖上簡化或推論的地方</h3>
+  <ol>
+    <li><strong>銀行內部過渡帳是推論</strong><span class="tag">推論</span>。依大借大貸的方向（過渡帳撥給券商專戶、券商專戶轉回過渡帳）推出來的，原始文件沒有一句直接寫「台股交割的錢先進過渡帳」。</li>
+    <li><strong>券商和證交所之間算淨額。</strong>同一天券商的客戶有人買、有人賣，券商只跟證交所收付差額，不是每一筆都走一次圖 2。</li>
+    <li><strong>T+1 的券商墊款沒畫出來。</strong>它由另一個系統處理，再回傳結果。</li>
+    <li><strong>股票本身怎麼交到你手上（集保那一段）不在這套系統裡</strong>，所以兩張圖都只畫錢。</li>
+  </ol>
+</section>
+
+<section id="debit">
+  <h2><span class="num">5</span>一扣與二扣</h2>
+  <p class="lead"><strong>一扣</strong>是交割日（T+2）凌晨，銀行第一次從客戶帳戶扣買股票的錢。<strong>二扣</strong>是第一次錢不夠的帳號，等客戶補錢之後，銀行再扣一次，也叫「追帳」。</p>
+
+  <h3>用一個例子看</h3>
+  <p>假設你 T+2 要付 10 萬元，帳戶裡只有 6 萬元：</p>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>時間</th><th>發生什麼</th><th>這筆明細的狀態</th></tr></thead>
+    <tbody>
+      <tr><td class="when">T+1 白天</td><td>系統查餘額，發現你不夠，把你列進缺款名單給券商</td><td>還沒扣</td></tr>
+      <tr><td class="when">T+2 0:00 起</td><td><strong>一扣</strong>：核心要扣 10 萬元，只有 6 萬元，扣款失敗</td><td>扣款不足</td></tr>
+      <tr><td class="when">早上</td><td>銀行回覆券商一扣結果，券商打電話叫你補錢</td><td></td></tr>
+      <tr><td class="when">你存入 5 萬元</td><td>餘額變 11 萬元。<strong>二扣（追帳）</strong>：核心再扣一次，10 萬元一次扣成功</td><td>從不足變成成功</td></tr>
+      <tr><td class="when">之後</td><td>銀行回覆券商二扣結果</td><td></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>如果你只補 3 萬元，餘額是 9 萬元，還是不夠，<strong>二扣也不會成功</strong>。追帳的規則是<strong>「要湊足金額才一起扣」</strong>，不會先扣 9 萬元、欠 1 萬元。</p>
+
+  <h3>兩者對照</h3>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th></th><th>一扣</th><th>二扣（追帳）</th></tr></thead>
+    <tbody>
+      <tr><td class="when">什麼時候</td><td>T+2 0:00 起</td><td>一扣不足的客戶補錢後；證交所規格寫 9:00 以後</td></tr>
+      <tr><td class="when">扣誰</td><td>這一批的全部明細</td><td>只有一扣沒扣成功的帳號</td></tr>
+      <tr><td class="when">怎麼判斷錢夠不夠</td><td>依「券商＋帳號」的淨額</td><td>依「帳號」</td></tr>
+      <tr><td class="when">誰發動</td><td>核心系統照前一天預傳的整批檔執行</td><td>核心系統自己追帳</td></tr>
+      <tr><td class="when">結果怎麼回來</td><td>一般的扣款回饋檔</td><td>另一種追帳回饋檔，由另一支收檔程式接收</td></tr>
+      <tr><td class="when">回給券商什麼</td><td>一扣回饋：整批全部明細的結果</td><td>二扣回饋：一扣沒成功那些帳號的最新結果，<strong>仍然不足的也在裡面</strong></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>T+2 當天的時間軸</h3>
+  <figure class="diagram">
+    <svg viewBox="0 0 680 560" role="img" aria-labelledby="d3-title d3-desc">
+      <title id="d3-title">T+2 當天一扣與二扣時間軸</title>
+      <desc id="d3-desc">三條泳道：銀行核心系統、證券清算系統、券商。T+1 系統已預傳整批扣款檔。T+2 0:00 起核心執行一扣，結果以回饋檔回到系統，寫回成功或不足，並回覆券商一扣回饋。早上券商通知客戶補錢，客戶存入。9:00 以後核心追帳，足額才一起扣，結果以追帳回饋檔回到系統，明細可能由不足變成功，再回覆二扣回饋；二扣回饋依通道不同。最終結果時點尚待確認。</desc>
+
+      <rect class="box" x="116" y="40" width="148" height="36" rx="4"/>
+      <text class="th" x="190" y="58" text-anchor="middle" dominant-baseline="central">銀行核心系統</text>
+      <rect class="box" x="296" y="40" width="148" height="36" rx="4"/>
+      <text class="th" x="370" y="58" text-anchor="middle" dominant-baseline="central">證券清算系統</text>
+      <rect class="box" x="476" y="40" width="148" height="36" rx="4"/>
+      <text class="th" x="550" y="58" text-anchor="middle" dominant-baseline="central">券商</text>
+
+      <text class="th" x="68" y="115" text-anchor="middle" dominant-baseline="central">T+1</text>
+      <text class="ts" x="68" y="133" text-anchor="middle" dominant-baseline="central">前一天</text>
+      <text class="th" x="68" y="203" text-anchor="middle" dominant-baseline="central">0:00 起</text>
+      <text class="ts" x="68" y="221" text-anchor="middle" dominant-baseline="central">一扣</text>
+      <text class="th" x="68" y="291" text-anchor="middle" dominant-baseline="central">早上</text>
+      <text class="ts" x="68" y="309" text-anchor="middle" dominant-baseline="central">補錢</text>
+      <text class="th" x="68" y="379" text-anchor="middle" dominant-baseline="central">9:00 以後</text>
+      <text class="ts" x="68" y="397" text-anchor="middle" dominant-baseline="central">二扣</text>
+      <text class="th" x="68" y="467" text-anchor="middle" dominant-baseline="central">當天稍晚</text>
+      <text class="ts" x="68" y="485" text-anchor="middle" dominant-baseline="central">結果確定？</text>
+
+      <line class="leader" x1="40" y1="168" x2="636" y2="168"/>
+      <line class="leader" x1="40" y1="256" x2="636" y2="256"/>
+      <line class="leader" x1="40" y1="344" x2="636" y2="344"/>
+      <line class="leader" x1="40" y1="432" x2="636" y2="432"/>
+
+      <g class="purple">
+        <rect x="296" y="96" width="148" height="56" rx="8"/>
+        <text class="th" x="370" y="114" text-anchor="middle" dominant-baseline="central">T+1 已預傳</text>
+        <text class="ts" x="370" y="132" text-anchor="middle" dominant-baseline="central">送出整批扣款檔</text>
+      </g>
+      <path class="arr" d="M294 124 L190 124 L190 181" marker-end="url(#ah-gray)"/>
+
+      <g class="teal">
+        <rect x="116" y="184" width="148" height="56" rx="8"/>
+        <text class="th" x="190" y="202" text-anchor="middle" dominant-baseline="central">一扣</text>
+        <text class="ts" x="190" y="220" text-anchor="middle" dominant-baseline="central">依預傳檔扣款</text>
+      </g>
+      <line class="arr" x1="266" y1="212" x2="293" y2="212" marker-end="url(#ah-gray)"/>
+      <g class="purple">
+        <rect x="296" y="184" width="148" height="56" rx="8"/>
+        <text class="th" x="370" y="202" text-anchor="middle" dominant-baseline="central">收一扣回饋檔</text>
+        <text class="ts" x="370" y="220" text-anchor="middle" dominant-baseline="central">寫回：成功／不足</text>
+      </g>
+      <line class="arr" x1="446" y1="212" x2="473" y2="212" marker-end="url(#ah-gray)"/>
+      <g>
+        <rect class="box" x="476" y="184" width="148" height="56" rx="8"/>
+        <text class="th" x="550" y="202" text-anchor="middle" dominant-baseline="central">收一扣回饋</text>
+        <text class="ts" x="550" y="220" text-anchor="middle" dominant-baseline="central">整批全部明細</text>
+      </g>
+
+      <g>
+        <rect class="box" x="476" y="272" width="148" height="56" rx="8"/>
+        <text class="th" x="550" y="290" text-anchor="middle" dominant-baseline="central">通知客戶補錢</text>
+        <text class="ts" x="550" y="308" text-anchor="middle" dominant-baseline="central">依一扣回饋</text>
+      </g>
+      <line class="money" x1="474" y1="300" x2="267" y2="300" marker-end="url(#ah-teal)"/>
+      <g class="teal">
+        <rect x="116" y="272" width="148" height="56" rx="8"/>
+        <text class="th" x="190" y="290" text-anchor="middle" dominant-baseline="central">你存入補款</text>
+        <text class="ts" x="190" y="308" text-anchor="middle" dominant-baseline="central">帳戶餘額增加</text>
+      </g>
+      <line class="arr" x1="190" y1="330" x2="190" y2="357" marker-end="url(#ah-gray)"/>
+
+      <g class="teal">
+        <rect x="116" y="360" width="148" height="56" rx="8"/>
+        <text class="th" x="190" y="378" text-anchor="middle" dominant-baseline="central">二扣（追帳）</text>
+        <text class="ts" x="190" y="396" text-anchor="middle" dominant-baseline="central">足額才一起扣</text>
+      </g>
+      <line class="arr" x1="266" y1="388" x2="293" y2="388" marker-end="url(#ah-gray)"/>
+      <g class="purple">
+        <rect x="296" y="360" width="148" height="56" rx="8"/>
+        <text class="th" x="370" y="378" text-anchor="middle" dominant-baseline="central">收追帳回饋檔</text>
+        <text class="ts" x="370" y="396" text-anchor="middle" dominant-baseline="central">不足 → 成功</text>
+      </g>
+      <line class="arr dash" x1="446" y1="388" x2="473" y2="388" marker-end="url(#ah-gray)"/>
+      <g>
+        <rect class="box dash" x="476" y="360" width="148" height="56" rx="8"/>
+        <text class="th" x="550" y="378" text-anchor="middle" dominant-baseline="central">收二扣回饋</text>
+        <text class="ts" x="550" y="396" text-anchor="middle" dominant-baseline="central">一扣沒成功的帳號</text>
+      </g>
+
+      <g>
+        <rect class="box" x="116" y="448" width="148" height="56" rx="8"/>
+        <text class="th" x="190" y="466" text-anchor="middle" dominant-baseline="central">補款仍不足</text>
+        <text class="ts" x="190" y="484" text-anchor="middle" dominant-baseline="central">足額前不會扣</text>
+      </g>
+      <g>
+        <rect class="box dash" x="296" y="448" width="148" height="56" rx="8"/>
+        <text class="th" x="370" y="466" text-anchor="middle" dominant-baseline="central">最終結果時點</text>
+        <text class="ts" x="370" y="484" text-anchor="middle" dominant-baseline="central">尚待確認</text>
+      </g>
+
+      <rect class="sw-purple" x="104" y="525" width="14" height="14" rx="3"/>
+      <text class="ts" x="124" y="532" dominant-baseline="central">本系統</text>
+      <rect class="sw-teal" x="180" y="525" width="14" height="14" rx="3"/>
+      <text class="ts" x="200" y="532" dominant-baseline="central">錢的動作</text>
+      <line class="arr" x1="270" y1="532" x2="298" y2="532" marker-end="url(#ah-gray)"/>
+      <text class="ts" x="306" y="532" dominant-baseline="central">檔案、資料</text>
+      <line class="money" x1="390" y1="532" x2="418" y2="532" marker-end="url(#ah-teal)"/>
+      <text class="ts" x="426" y="532" dominant-baseline="central">存錢</text>
+      <line class="arr dash" x1="472" y1="532" x2="500" y2="532" marker-end="url(#ah-gray)"/>
+      <text class="ts" x="508" y="532" dominant-baseline="central">依通道或未確認</text>
+    </svg>
+    <figcaption>圖 3：T+2 當天一扣與二扣的時間軸。「0:00 起」和「9:00 以後」出自證交所的交割款規格。</figcaption>
+  </figure>
+
+  <h3>三個容易誤會的地方</h3>
+  <ol>
+    <li><strong>明細狀態會在當天被改寫。</strong>同一筆明細可能早上是「扣款不足」，下午因為追帳成功變成「成功」。所以查到「目前成功」，不代表一扣就成功了；要知道一扣當下的結果，得回去看那次的回饋檔。</li>
+    <li><strong>一扣會不會只扣一部分，目前還在確認。</strong>「足額才扣」是針對追帳的規則，一扣的部分扣款怎麼處理還要等核心系統的規格確認。追帳到幾點截止、什麼時候算最終結果，也還在確認。</li>
+    <li><strong>「一扣／二扣」這兩個詞在系統裡有好幾種意思。</strong>除了上面講的業務意思，它們也常被拿來指扣帳類別（預傳或即時）、回饋記錄的類別、承銷業務的處理方式，甚至資料表的名字。例如券商 T+1 沒送、T+2 才送的「即時扣款」，業務上是第一次扣款，系統卻可能記成「二扣」。交接時只說「一扣還沒完成」不夠，要講清楚是哪個業務、卡在哪個階段、哪一批。</li>
+  </ol>
+  <div class="callout"><strong>二扣回饋為什麼是虛線：</strong>二扣回饋怎麼送回券商，依券商使用的傳檔通道而不同。有的通道由收檔程式直接產生，有的通道另有處理方式，其中部分還在確認中。所以券商說「沒收到二扣回饋」時，要先問是哪個通道。</div>
+</section>
+
+<section id="other">
+  <h2><span class="num">6</span>系統還承接的其他業務</h2>
+  <p>都是同一套邏輯的變化：</p>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>業務</th><th>和台股一般交割的差別</th></tr></thead>
+    <tbody>
+      <tr><td>定期定額</td><td>多了<strong>圈存</strong>：先把錢凍結起來，扣款時再解除凍結，叫「扣款解圈」</td></tr>
+      <tr><td>承銷（新股抽籤）</td><td>申購截止日先預傳，隔天扣申購款；沒抽中就退款，叫「申退」；競價拍賣分投標款、得標款</td></tr>
+      <tr><td>複委託（買外國股票）</td><td>下單當下就<strong>即時圈存</strong>，T+1 再整批扣款解圈；可以用台幣或外幣付款，外幣走外幣核心，<strong>外幣沒有大借大貸</strong></td></tr>
+      <tr><td>證交所出入金</td><td>券商入金給證交所、證交所出金給券商，經央行同資系統處理</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>還要注意：<strong>不同券商的節奏不一樣</strong>。有的券商把扣款和解圈一次做（扣款解圈二合一），有的券商分開做。</p>
+</section>
+
+</main>
+
+<footer>
+  內容整理自交割款業務的學習筆記與討論，只保留業務流程層級的說明，已去除系統實作細節。僅供教學示意，實際作業規定以權責單位為準。
+</footer>
+
+</body>
+</html>
