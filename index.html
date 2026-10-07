@@ -32,6 +32,8 @@
   --teal-sub: #0f6e56;
   --teal-line: #1d9e75;
   --coral-line: #d85a30;
+  --page-width: 920px;
+  --gutter: clamp(20px, 6vw, 56px);
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -67,8 +69,8 @@ body {
   font-size: 16px;
   line-height: 1.75;
 }
-main { max-width: 860px; margin: 0 auto; padding: 0 16px 64px; }
-header.hero { max-width: 860px; margin: 0 auto; padding: 48px 16px 8px; }
+main { max-width: var(--page-width); margin: 0 auto; padding: 0 var(--gutter) 64px; }
+header.hero { max-width: var(--page-width); margin: 0 auto; padding: 48px var(--gutter) 8px; }
 header.hero h1 { font-size: 30px; line-height: 1.35; margin: 0 0 8px; font-weight: 700; }
 header.hero p { margin: 0; color: var(--text-2); }
 .notice {
@@ -86,7 +88,7 @@ nav.toc {
   margin: 24px 0 0;
 }
 nav.toc ul {
-  max-width: 860px; margin: 0 auto; padding: 10px 16px;
+  max-width: var(--page-width); margin: 0 auto; padding: 10px var(--gutter);
   list-style: none; display: flex; gap: 6px 18px; flex-wrap: wrap;
   font-size: 14px;
 }
@@ -130,7 +132,7 @@ figure.diagram figcaption { font-size: 13px; color: var(--text-2); margin-top: 8
   background: var(--note-bg); color: var(--note-text); vertical-align: 1px;
 }
 .callout { padding: 12px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); margin: 0 0 16px; }
-footer { max-width: 860px; margin: 0 auto; padding: 24px 16px 48px; color: var(--text-2); font-size: 13px; border-top: 1px solid var(--line); }
+footer { width: min(calc(100% - 2 * var(--gutter)), calc(var(--page-width) - 2 * var(--gutter))); margin: 0 auto; padding: 24px 0 48px; color: var(--text-2); font-size: 13px; border-top: 1px solid var(--line); }
 svg .th { font-size: 14px; font-weight: 500; fill: var(--text); }
 svg .ts { font-size: 12px; fill: var(--text-2); }
 svg .box { fill: var(--surface); stroke: var(--line-strong); stroke-width: .75; }
