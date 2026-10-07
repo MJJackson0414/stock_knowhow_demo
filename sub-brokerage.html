@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>複委託交割款</title>
+<meta name="description" content="透過國內券商買外國股票時，銀行怎麼在下單當下即時圈存、隔天扣款解圈，以及台幣和外幣的差別。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <marker id="ah-gray" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="mk-gray" d="M2 1L8 5L2 9" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+  </defs>
+</svg>
+
+<div class="sitebar">
+  <div class="sitebar-inner">
+    <a class="brand" href="index.html">股票交割款入門</a>
+    <nav class="site" aria-label="業務">
+      <a href="index.html">台股一般交割</a>
+      <a href="regular.html">定期定額</a>
+      <a href="ipo.html">承銷</a>
+      <a href="sub-brokerage.html" aria-current="page">複委託</a>
+    </nav>
+  </div>
+</div>
+
+<header class="hero">
+  <h1>複委託：買外國股票</h1>
+  <p>透過國內券商買外國股票。和台股不同，銀行在客戶下單的當下就要先把錢凍結起來，隔天才扣款。</p>
+  <div class="notice">本頁是業務流程層級的簡化說明，系統名稱都改成通用說法。「圈存」「解圈」「大借大貸」的基本意思請先看<a href="regular.html">定期定額</a>和<a href="index.html">台股一般交割</a>。標有「推論」的地方是依流程推出來的，不是原始文件直接寫的。</div>
+</header>
+
+<nav class="toc" aria-label="目錄">
+  <ul>
+    <li><a href="#overview">一句話</a></li>
+    <li><a href="#realtime">即時圈存</a></li>
+    <li><a href="#timeout">逾時與處理中</a></li>
+    <li><a href="#flow">時間軸</a></li>
+    <li><a href="#currency">台幣與外幣</a></li>
+    <li><a href="#contract">授權</a></li>
+    <li><a href="#pitfalls">常見誤會</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<section id="overview">
+  <h2><span class="num">1</span>先用一句話講</h2>
+  <p class="lead">複委託是客戶<strong>透過國內券商買賣外國股票</strong>，交割款可以用台幣或外幣。銀行在 <strong>T 日下單當下先圈存</strong>，<strong>T+1 依券商的檔案扣款並解圈</strong>；台幣最後還要做大借大貸，外幣沒有。</p>
+</section>
+
+<section id="realtime">
+  <h2><span class="num">2</span>下單當下的即時圈存</h2>
+  <p>客戶在券商下單買外國股票時，券商會馬上送一筆「圈存請求」給銀行，請銀行先把這筆錢凍結起來。整個往返是即時的：</p>
+  <ol>
+    <li>券商送出圈存請求。</li>
+    <li>銀行先回一個<strong>收件確認</strong>。這只代表「收到了」，就算是重複送來的請求也會收到確認。</li>
+    <li>銀行檢查帳號、授權等條件。不通過就直接回失敗原因，不會送到核心系統。</li>
+    <li>檢查通過，才送到核心系統凍結款項：台幣送台幣核心，外幣送外幣核心。</li>
+    <li>銀行把結果（成功或失敗原因）回給券商，券商再回一個「已收到結果」。</li>
+  </ol>
+  <p>同一條即時通道上，券商也可以做解圈、查圈存結果、查解圈結果、查餘額。</p>
+
+  <figure class="diagram">
+    <svg viewBox="0 0 680 478" role="img" aria-labelledby="sb-title sb-desc">
+      <title id="sb-title">複委託即時圈存與隔日扣款解圈</title>
+      <desc id="sb-desc">三條泳道：券商、銀行（閘道與證券清算系統）、核心系統。T 日券商送圈存請求，銀行先回收件確認，再檢查帳號和授權，通過後送核心凍結款項，結果整理後回給券商。T+1 券商送扣款解圈檔，銀行建檔上傳，核心扣款並解圈，台幣才有大借大貸。</desc>
+
+      <rect class="box" x="116" y="40" width="148" height="36" rx="4"/>
+      <text class="th" x="190" y="58" text-anchor="middle" dominant-baseline="central">券商</text>
+      <rect class="box" x="296" y="40" width="148" height="36" rx="4"/>
+      <text class="th" x="370" y="58" text-anchor="middle" dominant-baseline="central">銀行</text>
+      <rect class="box" x="476" y="40" width="148" height="36" rx="4"/>
+      <text class="th" x="550" y="58" text-anchor="middle" dominant-baseline="central">核心系統</text>
+
+      <text class="th" x="68" y="203" text-anchor="middle" dominant-baseline="central">T 日</text>
+      <text class="ts" x="68" y="221" text-anchor="middle" dominant-baseline="central">即時</text>
+      <text class="th" x="68" y="379" text-anchor="middle" dominant-baseline="central">T+1</text>
+      <text class="ts" x="68" y="397" text-anchor="middle" dominant-baseline="central">整批</text>
+
+      <line class="leader" x1="40" y1="344" x2="636" y2="344"/>
+
+      <g>
+        <rect class="box" x="116" y="96" width="148" height="56" rx="8"/>
+        <text class="th" x="190" y="114" text-anchor="middle" dominant-baseline="central">送圈存請求</text>
+        <text class="ts" x="190" y="132" text-anchor="middle" dominant-baseline="central">客戶下單當下</text>
+      </g>
+      <line class="arr" x1="266" y1="114" x2="293" y2="114" marker-end="url(#ah-gray)"/>
+      <line class="arr" x1="294" y1="136" x2="267" y2="136" marker-end="url(#ah-gray)"/>
+      <g class="purple">
+        <rect x="296" y="96" width="148" height="56" rx="8"/>
+        <text class="th" x="370" y="114" text-anchor="middle" dominant-baseline="central">回收件確認</text>
+        <text class="ts" x="370" y="132" text-anchor="middle" dominant-baseline="central">只代表收到</text>
+      </g>
+      <line class="arr" x1="370" y1="154" x2="370" y2="181" marker-end="url(#ah-gray)"/>
+
+      <g class="purple">
+        <rect x="296" y="184" width="148" height="56" rx="8"/>
+        <text class="th" x="370" y="202" text-anchor="middle" dominant-baseline="central">檢查帳號、授權</text>
+        <text class="ts" x="370" y="220" text-anchor="middle" dominant-baseline="central">不通過直接回失敗</text>
+      </g>
+      <line class="arr" x1="446" y1="212" x2="473" y2="212" marker-end="url(#ah-gray)"/>
+      <g class="teal">
+        <rect x="476" y="184" width="148" height="56" rx="8"/>
+        <text class="th" x="550" y="202" text-anchor="middle" dominant-baseline="central">凍結客戶款項</text>
+        <text class="ts" x="550" y="220" text-anchor="middle" dominant-baseline="central">台幣或外幣核心</text>
+      </g>
+      <path class="arr" d="M550 242 L550 300 L447 300" marker-end="url(#ah-gray)"/>
+
+      <g class="purple">
+        <rect x="296" y="272" width="148" height="56" rx="8"/>
+        <text class="th" x="370" y="290" text-anchor="middle" dominant-baseline="central">回圈存結果</text>
+        <text class="ts" x="370" y="308" text-anchor="middle" dominant-baseline="central">成功或失敗原因</text>
+      </g>
+      <line class="arr" x1="294" y1="300" x2="267" y2="300" marker-end="url(#ah-gray)"/>
+      <g>
+        <rect class="box" x="116" y="272" width="148" height="56" rx="8"/>
+        <text class="th" x="190" y="290" text-anchor="middle" dominant-baseline="central">收圈存結果</text>
+        <text class="ts" x="190" y="308" text-anchor="middle" dominant-baseline="central">再回「已收到」</text>
+      </g>
+
+      <g>
+        <rect class="box" x="116" y="360" width="148" height="56" rx="8"/>
+        <text class="th" x="190" y="378" text-anchor="middle" dominant-baseline="central">送扣款解圈檔</text>
+        <text class="ts" x="190" y="396" text-anchor="middle" dominant-baseline="central">整批檔</text>
+      </g>
+      <line class="arr" x1="266" y1="388" x2="293" y2="388" marker-end="url(#ah-gray)"/>
+      <g class="purple">
+        <rect x="296" y="360" width="148" height="56" rx="8"/>
+        <text class="th" x="370" y="378" text-anchor="middle" dominant-baseline="central">建檔、上傳</text>
+        <text class="ts" x="370" y="396" text-anchor="middle" dominant-baseline="central">經辦建檔、主管上傳</text>
+      </g>
+      <line class="arr" x1="446" y1="388" x2="473" y2="388" marker-end="url(#ah-gray)"/>
+      <g class="teal">
+        <rect x="476" y="360" width="148" height="56" rx="8"/>
+        <text class="th" x="550" y="378" text-anchor="middle" dominant-baseline="central">扣款並解圈</text>
+        <text class="ts" x="550" y="396" text-anchor="middle" dominant-baseline="central">台幣才有大借大貸</text>
+      </g>
+
+      <rect class="sw-purple" x="150" y="445" width="14" height="14" rx="3"/>
+      <text class="ts" x="170" y="452" dominant-baseline="central">銀行端的動作</text>
+      <rect class="sw-teal" x="290" y="445" width="14" height="14" rx="3"/>
+      <text class="ts" x="310" y="452" dominant-baseline="central">動到客戶的錢（凍結或扣款）</text>
+    </svg>
+    <figcaption>圖：T 日即時圈存的往返，以及 T+1 的整批扣款解圈。圖上畫的是扣款解圈一次做的券商；分開做的券商在 T+1 會分成扣款和解圈兩步。</figcaption>
+  </figure>
+</section>
+
+<section id="timeout">
+  <h2><span class="num">3</span>逾時和「處理中」代表什麼</h2>
+  <p>即時交易最容易出問題的地方，是「不確定到底有沒有圈到」：</p>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>券商看到</th><th>代表什麼</th><th>不代表什麼</th></tr></thead>
+    <tbody>
+      <tr><td class="when">收件確認</td><td>銀行收到請求了</td><td>不代表圈存成功</td></tr>
+      <tr><td class="when">逾時</td><td>銀行這一次沒有拿到核心系統的回應</td><td>不代表沒圈到。逾時可能發生在核心已經圈存之後</td></tr>
+      <tr><td class="when">查詢回「處理中」</td><td>銀行本地的紀錄還沒確認結果</td><td>不代表核心沒圈到。這個回覆只看銀行本地紀錄，沒有去問核心</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="callout"><strong>不要直接換新序號重送。</strong>如果第一筆其實已經在核心圈存成功，重送就會變成同一筆錢被凍結兩次。應該先向核心確認這筆是「已圈」「確定沒圈」還是「仍不確定」，只有確定沒圈時，才討論要不要重發<span class="tag">推論</span>。</div>
+</section>
+
+<section id="flow">
+  <h2><span class="num">4</span>時間軸：台幣、外幣與兩種券商節奏</h2>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th></th><th>扣款解圈一次做的券商</th><th>扣款、解圈分開的券商</th></tr></thead>
+    <tbody>
+      <tr><td class="when">台幣</td><td>T 日即時圈存 → T+1 整批<strong>扣款解圈</strong> → 大借大貸</td><td>T 日即時圈存 → T+1 整批<strong>扣款</strong> → T+1 <strong>解圈</strong> → 大借大貸</td></tr>
+      <tr><td class="when">外幣</td><td>T 日即時圈存 → T+1 整批<strong>扣款解圈</strong>（沒有大借大貸）</td><td>T 日即時圈存 → T+1 整批<strong>扣款</strong> → T+1 <strong>解圈</strong>（沒有大借大貸；外幣解圈是逐筆處理）</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>除了即時交易，複委託也有<strong>整批</strong>的做法：T 日的圈存不是下單當下一筆一筆送，而是券商把圈存資料做成整批檔送進來。T+1 的扣款和解圈一樣依券商節奏，一次做或分開做。</p>
+  <p>扣款解圈檔的填法也和定期定額不同：複委託的一列通常<strong>只填扣款或解圈其中一邊</strong>；解圈的那一列要指出它解的是哪一筆原圈存。</p>
+</section>
+
+<section id="currency">
+  <h2><span class="num">5</span>台幣和外幣的差別</h2>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th></th><th>台幣</th><th>外幣</th></tr></thead>
+    <tbody>
+      <tr><td class="when">核心系統</td><td>台幣核心；整批檔經整批作業系統</td><td>外幣核心</td></tr>
+      <tr><td class="when">大借大貸</td><td>有</td><td>沒有</td></tr>
+      <tr><td class="when">整批怎麼送</td><td>主管上傳後送整批作業系統</td><td>主管按整批上傳時，系統<strong>只先登記</strong>；之後由批次程式自動產檔，並通知外幣核心來取檔</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>外幣整批上傳後，畫面會顯示「上傳成功、等待回覆」。這只代表證券清算系統受理了，<strong>還沒有送到外幣核心</strong>。</p>
+</section>
+
+<section id="contract">
+  <h2><span class="num">6</span>複委託授權</h2>
+  <ul>
+    <li><strong>要簽什麼</strong>：客戶要先簽複委託授權契約，分成台幣、外幣單帳號、外幣雙帳號三種。</li>
+    <li><strong>存在哪裡</strong>：存在證券清算系統，不在核心系統。外幣核心另外有自己的授權資料，兩邊是兩套。</li>
+    <li><strong>怎麼新增、查詢、刪除</strong>：分行用櫃員系統操作，櫃員系統再呼叫證券清算系統的授權服務。部分券商也能經網路銀行的通路呼叫同一個服務。</li>
+    <li><strong>即時圈存會檢查授權</strong>：台幣要有台幣授權，外幣要有外幣單帳號授權，不符就拒絕。所以只簽了外幣雙帳號授權的客戶，即時圈存會被拒<span class="tag">推論</span>。</li>
+    <li><strong>券商的限制</strong>：有些券商不允許同一個帳號再綁其他券商。</li>
+  </ul>
+</section>
+
+<section id="pitfalls">
+  <h2><span class="num">7</span>容易誤會的地方</h2>
+  <ol>
+    <li><strong>收到確認不等於圈存成功；逾時不等於沒圈；「處理中」不等於核心沒圈。</strong>詳細見<a href="#timeout">第 3 節</a>。</li>
+    <li><strong>外幣整批的「上傳成功」只是受理。</strong>要等批次程式產檔、外幣核心處理完，結果回來才算數。</li>
+    <li><strong>同樣叫「扣款解圈」，填法和定期定額不同。</strong>複委託一列通常只填一邊，定期定額一列要兩邊都填。</li>
+    <li><strong>台幣、外幣要先分清楚。</strong>同一個即時通道、同樣的關鍵字，台幣和外幣都可能出現，查問題前先問是哪一種幣別。</li>
+  </ol>
+
+  <h3>還在確認的地方</h3>
+  <ul>
+    <li>核心系統收到重複圈存或發生逾時時怎麼處理，會不會自動沖回。</li>
+    <li>台幣複委託「扣款、解圈分開做」的實作：業務文件和程式寫的不一致，程式裡的解圈改成逐筆處理，單獨扣款怎麼做還沒查清楚。</li>
+    <li>外幣核心端的處理順序、怎麼防止重複處理，以及結果晚到時的作業規定。</li>
+  </ul>
+
+  <h3>接著看</h3>
+  <div class="next-links">
+    <a href="index.html"><strong>台股一般交割</strong><span>預傳、一扣、二扣、大借大貸的基本概念</span></a>
+    <a href="regular.html"><strong>定期定額</strong><span>先圈存、再扣款解圈</span></a>
+    <a href="ipo.html"><strong>承銷</strong><span>申購、申退、競價拍賣</span></a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  內容整理自交割款業務的學習筆記與討論，只保留業務流程層級的說明，已去除系統實作細節。僅供教學示意，實際作業規定以權責單位為準。
+</footer>
+
+</body>
+</html>

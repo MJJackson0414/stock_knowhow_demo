@@ -8,160 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
-<style>
-:root {
-  --bg: #faf9f6;
-  --surface: #ffffff;
-  --surface-2: #f1efe8;
-  --text: #2c2c2a;
-  --text-2: #5f5e5a;
-  --line: #d3d1c7;
-  --line-strong: #b4b2a9;
-  --accent: #534ab7;
-  --accent-soft: #eeedfe;
-  --note-bg: #faeeda;
-  --note-text: #633806;
-  --arrow: #73726c;
-  --purple-fill: #eeedfe;
-  --purple-stroke: #534ab7;
-  --purple-title: #3c3489;
-  --purple-sub: #534ab7;
-  --teal-fill: #e1f5ee;
-  --teal-stroke: #0f6e56;
-  --teal-title: #085041;
-  --teal-sub: #0f6e56;
-  --teal-line: #1d9e75;
-  --coral-line: #d85a30;
-  --page-width: 920px;
-  --gutter: clamp(20px, 6vw, 56px);
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #1c1c1a;
-    --surface: #262624;
-    --surface-2: #30302d;
-    --text: #ecebe6;
-    --text-2: #b4b2a9;
-    --line: #444441;
-    --line-strong: #5f5e5a;
-    --accent: #afa9ec;
-    --accent-soft: #2e2a5c;
-    --note-bg: #412402;
-    --note-text: #fac775;
-    --arrow: #9c9a92;
-    --purple-fill: #3c3489;
-    --purple-stroke: #afa9ec;
-    --purple-title: #eeedfe;
-    --purple-sub: #cecbf6;
-    --teal-fill: #085041;
-    --teal-stroke: #5dcaa5;
-    --teal-title: #e1f5ee;
-    --teal-sub: #9fe1cb;
-  }
-}
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
-  font-size: 16px;
-  line-height: 1.75;
-}
-main { max-width: var(--page-width); margin: 0 auto; padding: 0 var(--gutter) 64px; }
-header.hero { max-width: var(--page-width); margin: 0 auto; padding: 48px var(--gutter) 8px; }
-header.hero h1 { font-size: 30px; line-height: 1.35; margin: 0 0 8px; font-weight: 700; }
-header.hero p { margin: 0; color: var(--text-2); }
-.notice {
-  margin: 20px 0 0;
-  padding: 12px 16px;
-  border-radius: 10px;
-  background: var(--note-bg);
-  color: var(--note-text);
-  font-size: 14px;
-}
-nav.toc {
-  position: sticky; top: 0; z-index: 5;
-  background: var(--bg);
-  border-bottom: 1px solid var(--line);
-  margin: 24px 0 0;
-}
-nav.toc ul {
-  max-width: var(--page-width); margin: 0 auto; padding: 10px var(--gutter);
-  list-style: none; display: flex; gap: 6px 18px; flex-wrap: wrap;
-  font-size: 14px;
-}
-nav.toc a { color: var(--text-2); text-decoration: none; }
-nav.toc a:hover { color: var(--accent); }
-section { padding-top: 40px; scroll-margin-top: 56px; }
-h2 { font-size: 22px; font-weight: 700; margin: 0 0 12px; }
-h2 .num { color: var(--accent); margin-right: 8px; }
-h3 { font-size: 17px; font-weight: 500; margin: 28px 0 8px; }
-p { margin: 0 0 12px; }
-ul, ol { padding-left: 1.4em; margin: 0 0 12px; }
-li { margin-bottom: 6px; }
-strong { font-weight: 700; }
-.lead {
-  font-size: 18px;
-  padding: 16px 20px;
-  border-left: 4px solid var(--accent);
-  background: var(--accent-soft);
-  border-radius: 0;
-  margin: 0 0 16px;
-}
-.table-wrap { overflow-x: auto; margin: 0 0 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
-table { border-collapse: collapse; width: 100%; font-size: 15px; }
-th, td { text-align: left; vertical-align: top; padding: 10px 14px; border-bottom: 1px solid var(--line); }
-th { background: var(--surface-2); font-weight: 500; white-space: nowrap; }
-tr:last-child td { border-bottom: none; }
-td.when { white-space: nowrap; font-weight: 500; }
-figure.diagram {
-  margin: 8px 0 20px;
-  padding: 16px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  overflow-x: auto;
-}
-figure.diagram svg { display: block; width: 100%; min-width: 600px; height: auto; }
-figure.diagram figcaption { font-size: 13px; color: var(--text-2); margin-top: 8px; }
-.tag {
-  display: inline-block; font-size: 12px; line-height: 1.6;
-  padding: 0 8px; border-radius: 999px; margin-left: 4px;
-  background: var(--note-bg); color: var(--note-text); vertical-align: 1px;
-}
-.callout { padding: 12px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); margin: 0 0 16px; }
-footer { width: min(calc(100% - 2 * var(--gutter)), calc(var(--page-width) - 2 * var(--gutter))); margin: 0 auto; padding: 24px 0 48px; color: var(--text-2); font-size: 13px; border-top: 1px solid var(--line); }
-svg .th { font-size: 14px; font-weight: 500; fill: var(--text); }
-svg .ts { font-size: 12px; fill: var(--text-2); }
-svg .box { fill: var(--surface); stroke: var(--line-strong); stroke-width: .75; }
-svg .dash { stroke-dasharray: 4 3; }
-svg .purple rect { fill: var(--purple-fill); stroke: var(--purple-stroke); stroke-width: .75; }
-svg .purple .th { fill: var(--purple-title); }
-svg .purple .ts { fill: var(--purple-sub); }
-svg .teal rect { fill: var(--teal-fill); stroke: var(--teal-stroke); stroke-width: .75; }
-svg .teal .th { fill: var(--teal-title); }
-svg .teal .ts { fill: var(--teal-sub); }
-svg rect.sw-purple { fill: var(--purple-fill); stroke: var(--purple-stroke); stroke-width: .75; }
-svg rect.sw-teal { fill: var(--teal-fill); stroke: var(--teal-stroke); stroke-width: .75; }
-svg .arr { stroke: var(--arrow); stroke-width: 1.5; fill: none; }
-svg .money { stroke: var(--teal-line); stroke-width: 2; fill: none; }
-svg .sell { stroke: var(--coral-line); stroke-width: 1.5; fill: none; stroke-dasharray: 4 3; }
-svg .leader { stroke: var(--line-strong); stroke-width: .75; stroke-dasharray: 4 4; fill: none; }
-svg marker .mk-gray { stroke: var(--arrow); }
-svg marker .mk-teal { stroke: var(--teal-line); }
-svg marker .mk-coral { stroke: var(--coral-line); }
-@media (max-width: 600px) {
-  header.hero { padding-top: 32px; }
-  header.hero h1 { font-size: 24px; }
-  .lead { font-size: 16px; }
-  table { font-size: 14px; }
-  th, td { padding: 8px 10px; }
-  th { white-space: normal; }
-  td.when { white-space: normal; width: 5.5em; }
-}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -173,9 +20,21 @@ svg marker .mk-coral { stroke: var(--coral-line); }
   </defs>
 </svg>
 
+<div class="sitebar">
+  <div class="sitebar-inner">
+    <a class="brand" href="index.html">股票交割款入門</a>
+    <nav class="site" aria-label="業務">
+      <a href="index.html" aria-current="page">台股一般交割</a>
+      <a href="regular.html">定期定額</a>
+      <a href="ipo.html">承銷</a>
+      <a href="sub-brokerage.html">複委託</a>
+    </nav>
+  </div>
+</div>
+
 <header class="hero">
-  <h1>股票交割款入門</h1>
-  <p>從買一檔台股開始，看券商、交割銀行和核心系統怎麼分工，以及一扣、二扣、大借大貸是什麼。</p>
+  <h1>從買一檔台股開始</h1>
+  <p>看券商、交割銀行和核心系統怎麼分工，以及一扣、二扣、大借大貸是什麼。這一頁也是其他業務頁的基礎，建議先讀。</p>
   <div class="notice">本頁是業務流程層級的簡化說明，系統名稱都改成通用說法。標有「推論」的地方是依流程推出來的，不是原始文件直接寫的。</div>
 </header>
 
@@ -250,7 +109,7 @@ svg marker .mk-coral { stroke: var(--coral-line); }
             <li>錢不夠的帳號由核心再扣一次，叫<strong>追帳／二扣</strong>，規則是湊足金額才一起扣</li>
             <li>扣款結果檔回來後，寫回每筆明細的狀態</li>
             <li>把結果回覆給券商（一扣回饋、二扣回饋）</li>
-            <li><strong>大借大貸</strong>：把從客戶那邊扣到的總額，和券商的交割專戶一次結清</li>
+            <li><strong>大借大貸</strong>：依這一批明細的應扣、應入總額，和券商的交割專戶一次結清。台股一般交割算的是<strong>全額</strong>，不看每一筆有沒有扣成功</li>
           </ol>
         </td>
       </tr>
@@ -358,7 +217,7 @@ svg marker .mk-coral { stroke: var(--coral-line); }
       <g class="teal">
         <rect x="116" y="440" width="148" height="56" rx="8"/>
         <text class="th" x="190" y="458" text-anchor="middle" dominant-baseline="central">券商交割專戶入帳</text>
-        <text class="ts" x="190" y="476" text-anchor="middle" dominant-baseline="central">一筆總額</text>
+        <text class="ts" x="190" y="476" text-anchor="middle" dominant-baseline="central">依整批全額</text>
       </g>
 
       <rect class="sw-purple" x="104" y="521" width="14" height="14" rx="3"/>
@@ -603,14 +462,21 @@ svg marker .mk-coral { stroke: var(--coral-line); }
   <table>
     <thead><tr><th>業務</th><th>和台股一般交割的差別</th></tr></thead>
     <tbody>
-      <tr><td>定期定額</td><td>多了<strong>圈存</strong>：先把錢凍結起來，扣款時再解除凍結，叫「扣款解圈」</td></tr>
-      <tr><td>承銷（新股抽籤）</td><td>申購截止日先預傳，隔天扣申購款；沒抽中就退款，叫「申退」；競價拍賣分投標款、得標款</td></tr>
-      <tr><td>複委託（買外國股票）</td><td>下單當下就<strong>即時圈存</strong>，T+1 再整批扣款解圈；可以用台幣或外幣付款，外幣走外幣核心，<strong>外幣沒有大借大貸</strong></td></tr>
+      <tr><td><a href="regular.html">定期定額</a></td><td>多了<strong>圈存</strong>：先把錢凍結起來，扣款時再解除凍結，叫「扣款解圈」</td></tr>
+      <tr><td><a href="ipo.html">承銷（新股抽籤）</a></td><td>申購截止日先預傳，截止次日扣申購款；沒抽中就退款，叫「申退」；競價拍賣分投標款、得標款</td></tr>
+      <tr><td><a href="sub-brokerage.html">複委託（買外國股票）</a></td><td>下單當下就<strong>即時圈存</strong>，T+1 再整批扣款解圈；可以用台幣或外幣付款，外幣走外幣核心，<strong>外幣沒有大借大貸</strong></td></tr>
       <tr><td>證交所出入金</td><td>券商入金給證交所、證交所出金給券商，經央行同資系統處理</td></tr>
     </tbody>
   </table>
   </div>
   <p>還要注意：<strong>不同券商的節奏不一樣</strong>。有的券商把扣款和解圈一次做（扣款解圈二合一），有的券商分開做。</p>
+
+  <h3>接著看</h3>
+  <div class="next-links">
+    <a href="regular.html"><strong>定期定額</strong><span>先圈存、再扣款解圈</span></a>
+    <a href="ipo.html"><strong>承銷</strong><span>申購、申退、競價拍賣</span></a>
+    <a href="sub-brokerage.html"><strong>複委託</strong><span>買外國股票，下單當下就圈存</span></a>
+  </div>
 </section>
 
 </main>

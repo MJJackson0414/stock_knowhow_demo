@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>承銷交割款</title>
+<meta name="description" content="新股申購、申退與競價拍賣的款項，銀行在截止日與截止次日怎麼扣款、入款，以及大借大貸怎麼算。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <marker id="ah-gray" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="mk-gray" d="M2 1L8 5L2 9" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <marker id="ah-teal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="mk-teal" d="M2 1L8 5L2 9" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+  </defs>
+</svg>
+
+<div class="sitebar">
+  <div class="sitebar-inner">
+    <a class="brand" href="index.html">股票交割款入門</a>
+    <nav class="site" aria-label="業務">
+      <a href="index.html">台股一般交割</a>
+      <a href="regular.html">定期定額</a>
+      <a href="ipo.html" aria-current="page">承銷</a>
+      <a href="sub-brokerage.html">複委託</a>
+    </nav>
+  </div>
+</div>
+
+<header class="hero">
+  <h1>承銷：新股申購與競價拍賣</h1>
+  <p>抽新股要先繳申購款，沒中籤要退款，競價拍賣還分投標款和得標款。這一頁看銀行在截止日和截止次日怎麼處理這些錢。</p>
+  <div class="notice">本頁是業務流程層級的簡化說明，系統名稱都改成通用說法。「預傳」「一扣」「二扣」「大借大貸」的基本意思請先看<a href="index.html">台股一般交割</a>那一頁。標有「推論」的地方是依流程推出來的，不是原始文件直接寫的。</div>
+</header>
+
+<nav class="toc" aria-label="目錄">
+  <ul>
+    <li><a href="#overview">一句話</a></li>
+    <li><a href="#kinds">三種款項</a></li>
+    <li><a href="#flow">時間軸</a></li>
+    <li><a href="#order">扣帳順序</a></li>
+    <li><a href="#contract">授權</a></li>
+    <li><a href="#settle">大借大貸</a></li>
+    <li><a href="#pitfalls">常見誤會</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<section id="overview">
+  <h2><span class="num">1</span>先用一句話講</h2>
+  <p class="lead">承銷是<strong>新股申購（抽籤）和競價拍賣</strong>的款項。券商把客戶要繳或要退的錢做成檔案交給銀行，銀行從客戶帳戶扣款或入款，最後再和券商做一次大借大貸。</p>
+  <p>和台股一般交割比起來，承銷的時間軸是用<strong>「截止日」</strong>（申購截止那天）來算，而不是用成交日。</p>
+</section>
+
+<section id="kinds">
+  <h2><span class="num">2</span>三種款項</h2>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>款項</th><th>是什麼</th><th>對客戶帳戶</th></tr></thead>
+    <tbody>
+      <tr><td class="when">申購</td><td>抽籤申購新股時要繳的申購價款和處理費</td><td>扣款</td></tr>
+      <tr><td class="when">申退</td><td>沒中籤，把申購款退回給客戶</td><td>入款</td></tr>
+      <tr><td class="when">競拍：投標款</td><td>參加競價拍賣時要先繳的投標處理費和保證金</td><td>扣款</td></tr>
+      <tr><td class="when">競拍：得標款</td><td>得標後要繳的得標價款和手續費</td><td>扣款</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>申購和申退用同一種整批檔送給核心系統；投標款、得標款各有自己的檔案種類。</p>
+</section>
+
+<section id="flow">
+  <h2><span class="num">3</span>時間軸：截止日與截止次日</h2>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>時點</th><th>券商</th><th>證券清算系統與核心系統</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="when">截止日</td>
+        <td>把申購、申退、競拍的明細做成檔案送進銀行。檔案上的轉帳日期必須是下一個營業日</td>
+        <td>
+          <ol>
+            <li>收檔並檢查，包括客戶有沒有承銷授權；<strong>沒有授權的明細不會送出</strong></li>
+            <li>經辦建檔、主管上傳，把整批檔「預傳」給核心系統</li>
+          </ol>
+        </td>
+      </tr>
+      <tr>
+        <td class="when">截止次日</td>
+        <td>收到扣款結果，知道哪些客戶成功</td>
+        <td>
+          <ol>
+            <li>核心系統依預傳檔做第一次扣款、入款（<strong>一扣</strong>）</li>
+            <li>結果寫回每筆明細</li>
+            <li>對<strong>符合補扣條件</strong>的明細做第二次入扣帳（<strong>二扣</strong>），條件見下方說明。截止日已經預傳過的批次，這次改成<strong>逐筆即時</strong>處理；截止日完全沒上傳的批次，才會<strong>整批即時</strong>送出<span class="tag">推論</span></li>
+            <li>最後做<strong>大借大貸</strong>，和券商結清</li>
+          </ol>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <p>第一次扣款在截止次日執行，是因為截止日上傳的是「預傳」，預傳檔會在下一個營業日才實際入扣帳。</p>
+
+  <h3>二扣只補哪些明細</h3>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>一扣後的狀況</th><th>截止次日會不會補扣</th></tr></thead>
+    <tbody>
+      <tr><td>存款不足（或當天有違約交割而不能做承銷）</td><td>會</td></tr>
+      <tr><td>帳戶是靜止戶</td><td>會</td></tr>
+      <tr><td>還沒送出、沒有結果的明細</td><td>會</td></tr>
+      <tr><td>帳號有誤、帳戶已結清、沒有授權、統編與帳號不符</td><td><strong>不會</strong></td></tr>
+      <tr><td>扣帳異常（核心回了其他非成功的結果）</td><td><strong>不會</strong></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="callout">
+    <strong>補扣之前的兩個限制：</strong>
+    <ol>
+      <li><strong>結果還沒全部回來，就不能補扣。</strong>同一批只要還有明細「已送出、結果還沒回來」，系統就會擋下第二次入扣帳，要等全部回完。</li>
+      <li><strong>結果不明的明細，要先確認才能重送。</strong>如果上一次逐筆處理時逾時或發生錯誤，系統上的狀態不一定反映核心實際有沒有入扣帳。這時要先逐筆向核心確認，<strong>確定沒有入扣帳才能重送</strong>，否則可能重複扣款。任何一項判斷不了，就停下來交給資訊單位，不要直接按。</li>
+    </ol>
+  </div>
+
+  <figure class="diagram">
+    <svg viewBox="0 0 680 470" role="img" aria-labelledby="ipo-title ipo-desc">
+      <title id="ipo-title">承銷截止日與截止次日流程</title>
+      <desc id="ipo-desc">三條泳道：券商、證券清算系統、銀行核心系統。截止日券商送承銷檔，系統建檔並檢查授權後預傳核心。截止次日核心做一扣，系統寫回結果並回覆券商，再對符合補扣條件的明細做二扣，逐筆或整批。最後錢經內部過渡帳，由大借大貸只依成功的金額和券商交割專戶結清。</desc>
+
+      <rect class="box" x="116" y="40" width="148" height="36" rx="4"/>
+      <text class="th" x="190" y="58" text-anchor="middle" dominant-baseline="central">券商</text>
+      <rect class="box" x="296" y="40" width="148" height="36" rx="4"/>
+      <text class="th" x="370" y="58" text-anchor="middle" dominant-baseline="central">證券清算系統</text>
+      <rect class="box" x="476" y="40" width="148" height="36" rx="4"/>
+      <text class="th" x="550" y="58" text-anchor="middle" dominant-baseline="central">銀行核心系統</text>
+
+      <text class="th" x="68" y="115" text-anchor="middle" dominant-baseline="central">截止日</text>
+      <text class="ts" x="68" y="133" text-anchor="middle" dominant-baseline="central">T</text>
+      <text class="th" x="68" y="243" text-anchor="middle" dominant-baseline="central">截止次日</text>
+      <text class="ts" x="68" y="261" text-anchor="middle" dominant-baseline="central">T+1</text>
+      <text class="th" x="68" y="371" text-anchor="middle" dominant-baseline="central">最後</text>
+      <text class="ts" x="68" y="389" text-anchor="middle" dominant-baseline="central">結算</text>
+
+      <line class="leader" x1="40" y1="168" x2="636" y2="168"/>
+      <line class="leader" x1="40" y1="336" x2="636" y2="336"/>
+
+      <g>
+        <rect class="box" x="116" y="96" width="148" height="56" rx="8"/>
+        <text class="th" x="190" y="114" text-anchor="middle" dominant-baseline="central">送承銷檔</text>
+        <text class="ts" x="190" y="132" text-anchor="middle" dominant-baseline="central">申購、申退、競拍</text>
+      </g>
+      <line class="arr" x1="266" y1="124" x2="293" y2="124" marker-end="url(#ah-gray)"/>
+      <g class="purple">
+        <rect x="296" y="96" width="148" height="56" rx="8"/>
+        <text class="th" x="370" y="114" text-anchor="middle" dominant-baseline="central">建檔、檢查授權</text>
+        <text class="ts" x="370" y="132" text-anchor="middle" dominant-baseline="central">沒授權的不送出</text>
+      </g>
+      <line class="arr" x1="446" y1="124" x2="473" y2="124" marker-end="url(#ah-gray)"/>
+      <g>
+        <rect class="box" x="476" y="96" width="148" height="56" rx="8"/>
+        <text class="th" x="550" y="114" text-anchor="middle" dominant-baseline="central">收預傳檔</text>
+        <text class="ts" x="550" y="132" text-anchor="middle" dominant-baseline="central">下一營業日執行</text>
+      </g>
+      <line class="arr" x1="550" y1="154" x2="550" y2="181" marker-end="url(#ah-gray)"/>
+
+      <g class="teal">
+        <rect x="476" y="184" width="148" height="56" rx="8"/>
+        <text class="th" x="550" y="202" text-anchor="middle" dominant-baseline="central">一扣</text>
+        <text class="ts" x="550" y="220" text-anchor="middle" dominant-baseline="central">扣申購款、退申退款</text>
+      </g>
+      <line class="arr" x1="474" y1="212" x2="447" y2="212" marker-end="url(#ah-gray)"/>
+      <g class="purple">
+        <rect x="296" y="184" width="148" height="56" rx="8"/>
+        <text class="th" x="370" y="202" text-anchor="middle" dominant-baseline="central">寫回結果</text>
+        <text class="ts" x="370" y="220" text-anchor="middle" dominant-baseline="central">成功／還沒成功</text>
+      </g>
+      <line class="arr" x1="294" y1="212" x2="267" y2="212" marker-end="url(#ah-gray)"/>
+      <g>
+        <rect class="box" x="116" y="184" width="148" height="56" rx="8"/>
+        <text class="th" x="190" y="202" text-anchor="middle" dominant-baseline="central">收一扣回覆</text>
+        <text class="ts" x="190" y="220" text-anchor="middle" dominant-baseline="central">知道誰成功</text>
+      </g>
+      <line class="arr" x1="370" y1="242" x2="370" y2="261" marker-end="url(#ah-gray)"/>
+
+      <g class="purple">
+        <rect x="296" y="264" width="148" height="56" rx="8"/>
+        <text class="th" x="370" y="282" text-anchor="middle" dominant-baseline="central">第二次入扣帳</text>
+        <text class="ts" x="370" y="300" text-anchor="middle" dominant-baseline="central">只做符合補扣條件的</text>
+      </g>
+      <line class="arr" x1="446" y1="292" x2="473" y2="292" marker-end="url(#ah-gray)"/>
+      <g class="teal">
+        <rect x="476" y="264" width="148" height="56" rx="8"/>
+        <text class="th" x="550" y="282" text-anchor="middle" dominant-baseline="central">二扣</text>
+        <text class="ts" x="550" y="300" text-anchor="middle" dominant-baseline="central">逐筆或整批即時</text>
+      </g>
+      <line class="money" x1="550" y1="322" x2="550" y2="349" marker-end="url(#ah-teal)"/>
+
+      <g class="teal">
+        <rect x="476" y="352" width="148" height="56" rx="8"/>
+        <text class="th" x="550" y="370" text-anchor="middle" dominant-baseline="central">內部過渡帳</text>
+        <text class="ts" x="550" y="388" text-anchor="middle" dominant-baseline="central">推論</text>
+      </g>
+      <line class="money" x1="474" y1="380" x2="447" y2="380" marker-end="url(#ah-teal)"/>
+      <g class="teal">
+        <rect x="296" y="352" width="148" height="56" rx="8"/>
+        <text class="th" x="370" y="370" text-anchor="middle" dominant-baseline="central">大借大貸</text>
+        <text class="ts" x="370" y="388" text-anchor="middle" dominant-baseline="central">只算成功的金額</text>
+      </g>
+      <line class="money" x1="294" y1="380" x2="267" y2="380" marker-end="url(#ah-teal)"/>
+      <g class="teal">
+        <rect x="116" y="352" width="148" height="56" rx="8"/>
+        <text class="th" x="190" y="370" text-anchor="middle" dominant-baseline="central">券商交割專戶</text>
+        <text class="ts" x="190" y="388" text-anchor="middle" dominant-baseline="central">一次結清</text>
+      </g>
+
+      <rect class="sw-purple" x="104" y="437" width="14" height="14" rx="3"/>
+      <text class="ts" x="124" y="444" dominant-baseline="central">本系統的動作</text>
+      <rect class="sw-teal" x="236" y="437" width="14" height="14" rx="3"/>
+      <text class="ts" x="256" y="444" dominant-baseline="central">錢實際移動</text>
+      <line class="arr" x1="350" y1="444" x2="378" y2="444" marker-end="url(#ah-gray)"/>
+      <text class="ts" x="386" y="444" dominant-baseline="central">檔案、資料</text>
+      <line class="money" x1="476" y1="444" x2="504" y2="444" marker-end="url(#ah-teal)"/>
+      <text class="ts" x="512" y="444" dominant-baseline="central">錢的流向</text>
+    </svg>
+    <figcaption>圖：承銷在截止日預傳，截止次日做一扣和二扣，最後依成功的金額做大借大貸。</figcaption>
+  </figure>
+</section>
+
+<section id="order">
+  <h2><span class="num">4</span>同一個帳戶同一天要扣好幾筆時，先扣哪一筆</h2>
+  <p>原始文件規定的扣帳順序：</p>
+  <ol>
+    <li>台股交割款</li>
+    <li>得標價款及手續費</li>
+    <li>申購處理費及申購價款</li>
+    <li>投標處理費及保證金</li>
+  </ol>
+  <p>申退在第 3 步一起處理，而且<strong>先入申退款，再扣申購款</strong>。所以客戶前一檔沒中籤退回來的錢，可以拿來繳下一檔的申購款。</p>
+  <p>系統在截止次日整批處理時，如果某個帳號的台股交割款還沒扣成功，會先把這個帳號的承銷明細排除，等於讓交割款優先<span class="tag">推論</span>。這個順序是由核心系統還是證券清算系統保證，文件沒有寫清楚。</p>
+</section>
+
+<section id="contract">
+  <h2><span class="num">5</span>承銷授權</h2>
+  <p>和台股一樣，銀行要有客戶的授權才能扣款。兩者存放的地方不同：</p>
+  <ul>
+    <li><strong>台股授權</strong>存在核心系統。</li>
+    <li><strong>承銷授權</strong>存在證券清算系統。</li>
+  </ul>
+  <p>建檔時如果證券清算系統查不到這位客戶的承銷授權，系統會去核心系統查他的台股授權。台股授權存在、而且授權的券商和這筆明細相符，系統就<strong>自動補一筆承銷授權</strong>；查不到的明細會被標成未授權，不會送出。</p>
+</section>
+
+<section id="settle">
+  <h2><span class="num">6</span>大借大貸：只算成功的金額</h2>
+  <p>承銷和台股一般交割在大借大貸的金額算法上不一樣：</p>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>業務</th><th>大借大貸的金額</th></tr></thead>
+    <tbody>
+      <tr><td class="when">台股一般交割</td><td><strong>全額</strong>：整批明細的應扣、應入合計，不看每一筆有沒有扣成功</td></tr>
+      <tr><td class="when">承銷</td><td><strong>成功額</strong>：只加總一扣、二扣已經成功的明細</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>同一批只會做一次大借大貸。如果有明細在大借大貸<strong>之後</strong>才扣成功，這筆錢不會再自動補進結算<span class="tag">推論</span>。實務上這種情況怎麼補，目前找不到依據，需要向作業單位確認。</p>
+</section>
+
+<section id="pitfalls">
+  <h2><span class="num">7</span>容易誤會的地方</h2>
+  <ol>
+    <li><strong>承銷的「二扣」不一定是「補錢後再扣」。</strong>它是截止次日對符合補扣條件的明細做的第二次入扣帳，可能逐筆也可能整批。和台股一般交割的「追帳」不是同一件事。</li>
+    <li><strong>「已收檔」不等於扣款成功。</strong>核心系統收到檔案只代表受理，要看寫回的結果才知道每一筆有沒有成功。</li>
+    <li><strong>畫面顯示上傳成功，也要確認結果真的回來。</strong>從程式邏輯看，截止次日的批次處理在某些情況下，畫面會顯示成功、實際卻沒有送出（尚未實測）。所以不能只看畫面訊息。</li>
+    <li><strong>大借大貸的金額和台股不同。</strong>承銷只算成功的金額，拿台股的算法來對帳會對不上。</li>
+  </ol>
+
+  <h3>還在確認的地方</h3>
+  <ul>
+    <li>大借大貸之後才成功的款項，實務上怎麼補。</li>
+    <li>扣帳順序由哪一個系統保證。</li>
+    <li>承銷的沖正（把已入扣帳的交易反向沖回）流程。</li>
+  </ul>
+
+  <h3>接著看</h3>
+  <div class="next-links">
+    <a href="index.html"><strong>台股一般交割</strong><span>預傳、一扣、二扣、大借大貸的基本概念</span></a>
+    <a href="regular.html"><strong>定期定額</strong><span>先圈存、再扣款解圈</span></a>
+    <a href="sub-brokerage.html"><strong>複委託</strong><span>買外國股票，下單當下就圈存</span></a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  內容整理自交割款業務的學習筆記與討論，只保留業務流程層級的說明，已去除系統實作細節。僅供教學示意，實際作業規定以權責單位為準。
+</footer>
+
+</body>
+</html>

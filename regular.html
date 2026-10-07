@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>定期定額交割款</title>
+<meta name="description" content="台股定期定額怎麼先圈存、再扣款解圈，兩種券商節奏有什麼不同，以及大借大貸怎麼算。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <marker id="ah-gray" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="mk-gray" d="M2 1L8 5L2 9" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+  </defs>
+</svg>
+
+<div class="sitebar">
+  <div class="sitebar-inner">
+    <a class="brand" href="index.html">股票交割款入門</a>
+    <nav class="site" aria-label="業務">
+      <a href="index.html">台股一般交割</a>
+      <a href="regular.html" aria-current="page">定期定額</a>
+      <a href="ipo.html">承銷</a>
+      <a href="sub-brokerage.html">複委託</a>
+    </nav>
+  </div>
+</div>
+
+<header class="hero">
+  <h1>定期定額：先圈存，再扣款解圈</h1>
+  <p>每期固定金額買台股。銀行不是直接扣款，而是先把錢凍結起來，到扣款日再扣款並解除凍結。</p>
+  <div class="notice">本頁是業務流程層級的簡化說明，系統名稱都改成通用說法。「預傳」「大借大貸」的基本意思請先看<a href="index.html">台股一般交割</a>那一頁。標有「推論」的地方是依流程推出來的，不是原始文件直接寫的。</div>
+</header>
+
+<nav class="toc" aria-label="目錄">
+  <ul>
+    <li><a href="#overview">一句話</a></li>
+    <li><a href="#terms">圈存與解圈</a></li>
+    <li><a href="#flow">兩種節奏</a></li>
+    <li><a href="#money">錢怎麼流</a></li>
+    <li><a href="#pitfalls">常見誤會</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<section id="overview">
+  <h2><span class="num">1</span>先用一句話講</h2>
+  <p class="lead">定期定額是客戶<strong>每期用固定金額買台股</strong>。銀行要做三件事：先把客戶的款項<strong>圈存</strong>（凍結），到扣款日用這筆錢<strong>扣款並解圈</strong>，最後和券商做<strong>大借大貸</strong>。</p>
+</section>
+
+<section id="terms">
+  <h2><span class="num">2</span>圈存、解圈、扣款解圈</h2>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>名詞</th><th>白話意思</th></tr></thead>
+    <tbody>
+      <tr><td class="when">圈存</td><td>把客戶帳戶裡的一筆錢<strong>凍結</strong>，錢還在帳戶裡，但不能動用，留給之後扣款</td></tr>
+      <tr><td class="when">解圈</td><td>解除凍結。解圈時要指出解的是<strong>哪一筆圈存</strong>，靠的是圈存成功時銀行回給券商的「原圈存日期＋序號」。一筆圈存可以分好幾次解完</td></tr>
+      <tr><td class="when">扣款解圈</td><td>同一批資料裡同時做「扣款」和「解除凍結」，系統叫它<strong>二合一</strong></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>為什麼要先圈存？凍結之後，這筆錢到扣款日之前不會被客戶花掉，扣款時比較不會因為餘額不足而失敗<span class="tag">推論</span>。</p>
+</section>
+
+<section id="flow">
+  <h2><span class="num">3</span>兩種券商節奏</h2>
+  <p>同樣是定期定額，不同券商的做法不一樣。有的券商把扣款和解圈<strong>一次做</strong>，有的券商<strong>分開做</strong>，日期也不同：</p>
+
+  <figure class="diagram">
+    <svg viewBox="0 0 680 572" role="img" aria-labelledby="reg-title reg-desc">
+      <title id="reg-title">定期定額兩種券商節奏</title>
+      <desc id="reg-desc">左欄是扣款解圈二合一的券商：T-1 預傳圈存，T 日扣款解圈二合一，最後大借大貸。右欄是扣款、解圈分開的券商：T+1 當日圈存，T+2 先扣款再解圈，最後大借大貸。大借大貸都只算成功的金額。</desc>
+
+      <rect class="box" x="150" y="40" width="200" height="36" rx="4"/>
+      <text class="th" x="250" y="58" text-anchor="middle" dominant-baseline="central">扣款解圈二合一的券商</text>
+      <rect class="box" x="420" y="40" width="200" height="36" rx="4"/>
+      <text class="th" x="520" y="58" text-anchor="middle" dominant-baseline="central">扣款、解圈分開的券商</text>
+
+      <text class="th" x="72" y="124" text-anchor="middle" dominant-baseline="central">T-1</text>
+      <text class="th" x="72" y="212" text-anchor="middle" dominant-baseline="central">T</text>
+      <text class="th" x="72" y="300" text-anchor="middle" dominant-baseline="central">T+1</text>
+      <text class="th" x="72" y="388" text-anchor="middle" dominant-baseline="central">T+2</text>
+      <text class="th" x="72" y="467" text-anchor="middle" dominant-baseline="central">最後</text>
+      <text class="ts" x="72" y="485" text-anchor="middle" dominant-baseline="central">結算</text>
+
+      <line class="leader" x1="40" y1="168" x2="640" y2="168"/>
+      <line class="leader" x1="40" y1="256" x2="640" y2="256"/>
+      <line class="leader" x1="40" y1="344" x2="640" y2="344"/>
+      <line class="leader" x1="40" y1="432" x2="640" y2="432"/>
+
+      <g>
+        <rect class="box" x="150" y="96" width="200" height="56" rx="8"/>
+        <text class="th" x="250" y="114" text-anchor="middle" dominant-baseline="central">預傳圈存</text>
+        <text class="ts" x="250" y="132" text-anchor="middle" dominant-baseline="central">圈存日填下一營業日</text>
+      </g>
+      <line class="arr" x1="250" y1="154" x2="250" y2="181" marker-end="url(#ah-gray)"/>
+      <g class="teal">
+        <rect x="150" y="184" width="200" height="56" rx="8"/>
+        <text class="th" x="250" y="202" text-anchor="middle" dominant-baseline="central">扣款解圈二合一</text>
+        <text class="ts" x="250" y="220" text-anchor="middle" dominant-baseline="central">用圈存的錢扣款</text>
+      </g>
+      <line class="arr" x1="250" y1="242" x2="250" y2="445" marker-end="url(#ah-gray)"/>
+
+      <g>
+        <rect class="box" x="420" y="272" width="200" height="56" rx="8"/>
+        <text class="th" x="520" y="290" text-anchor="middle" dominant-baseline="central">當日圈存</text>
+        <text class="ts" x="520" y="308" text-anchor="middle" dominant-baseline="central">整批檔，不是單筆即時</text>
+      </g>
+      <line class="arr" x1="452" y1="330" x2="452" y2="357" marker-end="url(#ah-gray)"/>
+      <g class="teal">
+        <rect x="400" y="360" width="105" height="56" rx="8"/>
+        <text class="th" x="452" y="378" text-anchor="middle" dominant-baseline="central">扣款</text>
+        <text class="ts" x="452" y="396" text-anchor="middle" dominant-baseline="central">從客戶帳戶</text>
+      </g>
+      <line class="arr" x1="507" y1="388" x2="532" y2="388" marker-end="url(#ah-gray)"/>
+      <g>
+        <rect class="box" x="535" y="360" width="105" height="56" rx="8"/>
+        <text class="th" x="587" y="378" text-anchor="middle" dominant-baseline="central">解圈</text>
+        <text class="ts" x="587" y="396" text-anchor="middle" dominant-baseline="central">解除凍結</text>
+      </g>
+      <line class="arr" x1="587" y1="418" x2="587" y2="445" marker-end="url(#ah-gray)"/>
+
+      <g class="teal">
+        <rect x="150" y="448" width="200" height="56" rx="8"/>
+        <text class="th" x="250" y="466" text-anchor="middle" dominant-baseline="central">大借大貸</text>
+        <text class="ts" x="250" y="484" text-anchor="middle" dominant-baseline="central">只算成功的金額</text>
+      </g>
+      <g class="teal">
+        <rect x="420" y="448" width="200" height="56" rx="8"/>
+        <text class="th" x="520" y="466" text-anchor="middle" dominant-baseline="central">大借大貸</text>
+        <text class="ts" x="520" y="484" text-anchor="middle" dominant-baseline="central">只算成功的金額</text>
+      </g>
+
+      <rect class="box" x="150" y="533" width="14" height="14" rx="3"/>
+      <text class="ts" x="170" y="540" dominant-baseline="central">凍結或解除凍結（錢還在帳戶）</text>
+      <rect class="sw-teal" x="400" y="533" width="14" height="14" rx="3"/>
+      <text class="ts" x="420" y="540" dominant-baseline="central">錢實際移動</text>
+    </svg>
+    <figcaption>圖：兩種券商節奏。日期依原始業務文件，各步的實際執行日沒有逐一核對。</figcaption>
+  </figure>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>日子</th><th>扣款解圈二合一的券商</th><th>扣款、解圈分開的券商</th></tr></thead>
+    <tbody>
+      <tr><td class="when">T-1</td><td>送圈存檔，圈存日期填下一個營業日（<strong>預傳圈存</strong>）</td><td>—</td></tr>
+      <tr><td class="when">T</td><td>送扣款解圈檔，<strong>扣款和解圈一次完成</strong>，之後做大借大貸</td><td>—</td></tr>
+      <tr><td class="when">T+1</td><td>—</td><td>送圈存檔，圈存日期填當天（<strong>當日圈存</strong>）</td></tr>
+      <tr><td class="when">T+2</td><td>—</td><td>先送<strong>扣款</strong>檔，再送<strong>解圈</strong>檔，之後做大借大貸</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>文件沒有寫清楚定期定額的「T」是以哪一天為基準。一般說法裡 T 是成交日<span class="tag">推論</span>。</p>
+</section>
+
+<section id="money">
+  <h2><span class="num">4</span>錢怎麼流</h2>
+  <ol>
+    <li><strong>圈存</strong>：錢沒有離開客戶帳戶，只是被凍結。</li>
+    <li><strong>扣款</strong>：錢真正從客戶帳戶扣走。</li>
+    <li><strong>大借大貸</strong>：銀行和券商的交割專戶結清。流程和台股一般交割一樣，是經辦確認、主管覆核，再由批次發出轉帳。</li>
+  </ol>
+  <p>和台股一般交割不同的是金額算法：定期定額的大借大貸<strong>只算扣款成功、而且結果已經回來的金額</strong>，台股一般交割則是依整批明細的全額。同一批只會結算一次，大借大貸做完之後才成功的交易不會再自動補結算<span class="tag">推論</span>，實務上怎麼補還要向作業單位確認。</p>
+</section>
+
+<section id="pitfalls">
+  <h2><span class="num">5</span>容易誤會的地方</h2>
+  <ol>
+    <li><strong>圈存不是扣款。</strong>圈存只是凍結，錢還在帳戶裡；要等扣款那一步，錢才真的被扣走。</li>
+    <li><strong>這裡的「當日圈存」不是單筆即時交易。</strong>它是整批檔裡把圈存日期填成當天，和複委託那種「客戶下單當下就圈存」的單筆即時圈存不同<span class="tag">推論</span>。</li>
+    <li><strong>同樣叫「扣款解圈」，填法不一樣。</strong>定期定額的一列要同時填扣款金額和解圈金額，兩個都不能是 0；複委託的扣款解圈通常一列只填其中一邊。</li>
+    <li><strong>一個圈存檔裡不要混不同業務。</strong>如果同一個圈存檔混了定期定額和複委託，規格沒有禁止、系統也不會擋，系統會用第一筆決定整批當成哪一種業務，結果可能出錯。寫進系統之後看不出混過，要回頭看原始檔。</li>
+    <li><strong>「上傳成功」不等於扣到錢。</strong>畫面顯示上傳成功，只代表已經登記送出，要看回來的結果才知道有沒有扣到。</li>
+    <li><strong>不同版本的回覆檔，同一個代碼意思可能不同。</strong>有的券商用專用版本的圈存回覆檔，裡面某些代碼的意思和一般版正好相反，對代碼時要先確認是哪個版本。</li>
+  </ol>
+
+  <h3>還在確認的地方</h3>
+  <ul>
+    <li>混了不同業務的圈存檔，要不要退回券商拆檔。</li>
+    <li>扣款或解圈部分失敗後怎麼補做；解圈目前沒有失敗重送的畫面。</li>
+    <li>預傳圈存的沖正流程。</li>
+    <li>大借大貸之後才成功的金額怎麼補。</li>
+  </ul>
+
+  <h3>接著看</h3>
+  <div class="next-links">
+    <a href="index.html"><strong>台股一般交割</strong><span>預傳、一扣、二扣、大借大貸的基本概念</span></a>
+    <a href="ipo.html"><strong>承銷</strong><span>申購、申退、競價拍賣</span></a>
+    <a href="sub-brokerage.html"><strong>複委託</strong><span>買外國股票，下單當下就圈存</span></a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  內容整理自交割款業務的學習筆記與討論，只保留業務流程層級的說明，已去除系統實作細節。僅供教學示意，實際作業規定以權責單位為準。
+</footer>
+
+</body>
+</html>
